@@ -6,13 +6,11 @@
 /*   By: artprevo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/06 20:32:31 by artprevo          #+#    #+#             */
-/*   Updated: 2018/12/06 21:26:00 by artprevo         ###   ########.fr       */
+/*   Updated: 2018/12/09 18:14:05 by artprevo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
-#include "libft.h"
-#include <stdio.h>
 
 int		ft_count_column(char *buf)
 {
