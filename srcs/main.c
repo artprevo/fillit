@@ -6,7 +6,7 @@
 /*   By: artprevo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/06 17:59:34 by artprevo          #+#    #+#             */
-/*   Updated: 2018/12/09 18:15:24 by artprevo         ###   ########.fr       */
+/*   Updated: 2018/12/09 20:55:58 by artprevo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,10 @@ int			main(int ac, char **av)
 	char			c;
 	int				fd;
 	int				i;
+	char			*tab;
 
 	list = NULL;
-	i = 0;
+	c = 'A';
 	if (ac == 2)
 	{
 		if ((fd = open(av[1], O_RDONLY)) < 0)
@@ -34,16 +35,11 @@ int			main(int ac, char **av)
 		while ((r = read(fd, buf, 21)) > 0)
 		{
 			buf[r] = '\0';
-			ft_listadd(&list, ft_listnew(c, buf));
+			ft_listadd(&list, ft_listnew(c, buf), c);
 			c++;
 		}
-		while (list)
-		{
-			printf("index=%c\n", list->index);
-			list = list->next;
-			i++;
-		}
-		printf("i=%d\n", i);
+		tab = ft_fill(&list);
+		printf("tab = \n%s\n", tab);
 	}
 	return (0);
 }

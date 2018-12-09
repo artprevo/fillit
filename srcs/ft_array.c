@@ -6,13 +6,13 @@
 /*   By: artprevo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/06 20:32:31 by artprevo          #+#    #+#             */
-/*   Updated: 2018/12/09 18:14:05 by artprevo         ###   ########.fr       */
+/*   Updated: 2018/12/09 20:35:38 by artprevo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-int		ft_count_column(char *buf)
+static int		ft_count_column(char *buf)
 {
 	int i;
 	int j;
@@ -31,7 +31,7 @@ int		ft_count_column(char *buf)
 	return (j);
 }
 
-int		ft_count_line(char *buf)
+static int		ft_count_line(char *buf)
 {
 	int i;
 	int j;
@@ -47,7 +47,7 @@ int		ft_count_line(char *buf)
 	return (j);
 }
 
-char	*ft_swap(char *buf)
+char			*ft_swap(char *buf, char index)
 {
 	int i;
 	int c;
@@ -61,9 +61,10 @@ char	*ft_swap(char *buf)
 		if (buf[i] == '#')
 		{
 			buf[i] = '.';
-			buf[i - c - (5 * l)] = '#';
+			buf[i - c - (5 * l)] = index;
 		}
 		i++;
 	}
+	buf[20] = '\0';
 	return (buf);
 }

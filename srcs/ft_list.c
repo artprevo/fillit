@@ -6,7 +6,7 @@
 /*   By: artprevo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/09 17:33:02 by artprevo          #+#    #+#             */
-/*   Updated: 2018/12/09 18:15:29 by artprevo         ###   ########.fr       */
+/*   Updated: 2018/12/09 20:55:57 by artprevo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,13 @@
 t_fill		*ft_listnew(char index, char *content)
 {
 	t_fill	*new;
+	t_fill	*tmp;
 
 	if (!(new = malloc(sizeof(*new))))
 		return (NULL);
 	if (new == NULL)
 		new->content = NULL;
-	else if (!(new->content = ft_strdup(ft_swap(content))))
+	else if (!(new->content = ft_strdup(ft_swap(content, index))))
 		return (NULL);
 	new->index = index;
 	new->next = NULL;
@@ -49,11 +50,21 @@ void		ft_listrev(t_fill **begin)
 	*begin = tmp1;
 }
 
-void		ft_listadd(t_fill **begin, t_fill *new)
+void		ft_listadd(t_fill **begin, t_fill *new, char c)
 {
-	new->next = *begin;
-	new->prev = NULL;
-	*begin = new;
+	t_fill	*tmp;
+
+	if (c == 'A')
+		*begin = new;
+	else
+	{
+		tmp = *begin;
+		while (tmp->next)
+			tmp = tmp->next;
+		tmp->next = new;
+		new->prev = tmp;
+		new->next = NULL;
+	}
 }
 
 size_t		ft_listlen(t_fill *list)
