@@ -6,7 +6,7 @@
 /*   By: artprevo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/06 17:59:34 by artprevo          #+#    #+#             */
-/*   Updated: 2018/12/11 17:17:04 by artprevo         ###   ########.fr       */
+/*   Updated: 2018/12/12 18:38:39 by artprevo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int			main(int ac, char **av)
 			ft_listadd(&list, ft_listnew(c, buf), c);
 			c++;
 		}
-		tab = ft_fill(&list);
+		tab = ft_init(12);
 		printf("tab = \n%s\n", tab);
 	}
 	return (0);

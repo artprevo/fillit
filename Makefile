@@ -6,7 +6,7 @@
 #    By: artprevo <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/07 00:20:03 by artprevo          #+#    #+#              #
-#    Updated: 2018/12/09 20:55:39 by artprevo         ###   ########.fr        #
+#    Updated: 2018/12/12 18:22:20 by artprevo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -74,7 +74,8 @@ SRC/S = ft_strlen.c        \
 	ft_strtrim.c		\
 	ft_strsplit.c		\
 	ft_strdup_free.c		\
-	ft_strnjoin_free.c
+	ft_strnjoin_free.c		\
+	ft_sqrt.c
 
 NAME = fillit
 LIB = libft.a
