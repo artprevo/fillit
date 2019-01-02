@@ -6,7 +6,7 @@
 /*   By: artprevo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/09 20:03:13 by artprevo          #+#    #+#             */
-/*   Updated: 2019/01/02 17:57:52 by artprevo         ###   ########.fr       */
+/*   Updated: 2019/01/02 18:35:33 by artprevo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,8 +71,11 @@ static int	ft_check(char *tab, t_fill *new, size_t j, size_t n)
 	char	*buf;
 	int		z;
 
+	z = 0;
 	y = 0;
 	buf = new->content;
+	j = j - ft_countz(buf, 0);
+	printf("INDEX = %c // COUNTZ = %d\n", new->index, ft_countz(buf, 0));
 	while (y != 4)
 	{
 		i = y + (n * y) + j;
@@ -111,7 +114,9 @@ static void	ft_fill(char *tab, t_fill *new, size_t j, size_t n)
 
 	y = 0;
 	i = 0;
+	z = 0;
 	buf = new->content;
+	j = j - ft_countz(buf, 0);
 	index = new->index;
 	while (y != 4)
 	{
@@ -124,7 +129,8 @@ static void	ft_fill(char *tab, t_fill *new, size_t j, size_t n)
 				i++;
 			while (z != 0)
 			{
-				i++;
+				if (y != 0)	
+					i++;
 				z--;
 			}
 			tab[i] = index;
@@ -143,11 +149,10 @@ void	ft_place(char *tab, t_fill *new, size_t n)
 {
 	int i;
 	int j;
-	int origin;
 
-	origin = 0;
 	i = 0;
-	while (new)
+	n = ft_count(n * 4);
+	while (new && tab[i])
 	{
 		if (ft_check(tab, new, i, n) == 1)
 		{
