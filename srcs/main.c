@@ -3,45 +3,32 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: artprevo <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: tamigore <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/12/06 17:59:34 by artprevo          #+#    #+#             */
-/*   Updated: 2018/12/29 16:49:01 by artprevo         ###   ########.fr       */
+/*   Created: 2018/12/05 16:31:06 by tamigore          #+#    #+#             */
+/*   Updated: 2019/01/02 17:00:35 by artprevo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
+#include <stdio.h>
 
 int			main(int ac, char **av)
 {
-	int 			r;
-	char 			buf[BUFF_SIZE + 1];
-	t_fill			*list;
-	char			c;
-	int				fd;
-	int				i;
-	char			*tab;
-	size_t			n;
+	t_fill	*list;
+	char	c;
+	char	*p;
+	int 	fd;
+	int 	i;
 
-	list = NULL;
-	c = 'A';
-	if (ac == 2)
+	if (ac != 2 || (fd = open(av[1], O_RDWR)) == -1)
 	{
-		if ((fd = open(av[1], O_RDONLY)) < 0)
-		{
-			ft_putstr("error opening boloss.\n");
-			return (0);
-		}
-		c = 'A';
-		while ((r = read(fd, buf, 21)) > 0)
-		{
-			buf[r] = '\0';
-			ft_listadd(&list, ft_listnew(c, buf), c);
-			c++;
-		}
-		tab = ft_init(6);
-		ft_place(tab, list, 6);
-		printf("tab = \n%s\n", tab);
+		ft_putstr("usage : ./fillit valid_file\n");
+		return (0);
 	}
+	list = ft_valid_file(fd);
+	p = ft_init(ac - 1);
+	ft_place(p, list, ac - 1);
+	printf("tab = \n%s\n", p);
 	return (0);
 }

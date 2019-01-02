@@ -6,7 +6,7 @@
 #    By: artprevo <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/07 00:20:03 by artprevo          #+#    #+#              #
-#    Updated: 2018/12/29 13:54:10 by artprevo         ###   ########.fr        #
+#    Updated: 2019/01/02 16:33:48 by artprevo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -80,7 +80,7 @@ SRC/S = ft_strlen.c        \
 NAME = fillit
 LIB = libft.a
 FLAGS = -Wall -Wextra -Werror
-SRC = main.c ft_array.c ft_list.c ft_fill.c ft_ini.c
+SRC = main.c ft_array.c ft_list.c ft_fill.c ft_ini.c parsing.c ft_safejoin.c
 HEADERS = ./includes
 LIBSRC = $(SRC/P) $(SRC/O) $(SRC/I) $(SRC/S) $(SRC/M) $(SRC/L)
 LIBOBJ = $(LIBSRC:.c=.o)
