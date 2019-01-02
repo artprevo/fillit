@@ -6,7 +6,7 @@
 /*   By: artprevo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/09 20:03:13 by artprevo          #+#    #+#             */
-/*   Updated: 2019/01/02 16:32:31 by artprevo         ###   ########.fr       */
+/*   Updated: 2019/01/02 17:57:54 by artprevo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,6 @@ char	*ft_init(size_t n)
 
 	i = 0;
 	j = 0;
-	n = ft_count(n * 4);
 	tab = ft_strnew(n * n + n);
 	while (tab[i])
 	{

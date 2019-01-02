@@ -6,7 +6,7 @@
 /*   By: artprevo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/09 20:03:13 by artprevo          #+#    #+#             */
-/*   Updated: 2019/01/02 16:33:11 by artprevo         ###   ########.fr       */
+/*   Updated: 2019/01/02 17:57:52 by artprevo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,7 @@ Remplit le tableau avec le tetra a partir d'un point donne j
 (FONCTIONNEL ASKIP)
 */
 
-static void	ft_fill(char *tab, t_fill *new, size_t n, size_t j)
+static void	ft_fill(char *tab, t_fill *new, size_t j, size_t n)
 {
 	char	*buf;
 	size_t	i;
@@ -147,15 +147,13 @@ void	ft_place(char *tab, t_fill *new, size_t n)
 
 	origin = 0;
 	i = 0;
-	n = ft_count(n * 4);
 	while (new)
 	{
-		if (ft_check(tab, new, i, ft_count(n * 4)) == 1)
+		if (ft_check(tab, new, i, n) == 1)
 		{
 			while (tab[i] != '.')
 				i++;
-			printf("i = %d\n", i);
-			ft_fill(tab, new, n, i);
+			ft_fill(tab, new, i, n);
 			ft_putstr(tab);
 			ft_putchar('\n');
 			new = new->next;

@@ -6,7 +6,7 @@
 /*   By: tamigore <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/05 16:31:06 by tamigore          #+#    #+#             */
-/*   Updated: 2019/01/02 17:00:35 by artprevo         ###   ########.fr       */
+/*   Updated: 2019/01/02 17:57:57 by artprevo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int			main(int ac, char **av)
 	char	c;
 	char	*p;
 	int 	fd;
-	int 	i;
+	size_t	i;
 
 	if (ac != 2 || (fd = open(av[1], O_RDWR)) == -1)
 	{
@@ -27,8 +27,9 @@ int			main(int ac, char **av)
 		return (0);
 	}
 	list = ft_valid_file(fd);
-	p = ft_init(ac - 1);
-	ft_place(p, list, ac - 1);
+	i = ft_listlen(list);
+	p = ft_init(ft_count(i * 4));
+	ft_place(p, list, i);
 	printf("tab = \n%s\n", p);
 	return (0);
 }
