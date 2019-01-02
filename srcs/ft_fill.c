@@ -6,7 +6,7 @@
 /*   By: artprevo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/09 20:03:13 by artprevo          #+#    #+#             */
-/*   Updated: 2019/01/02 18:35:33 by artprevo         ###   ########.fr       */
+/*   Updated: 2019/01/02 18:43:50 by artprevo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -154,16 +154,17 @@ void	ft_place(char *tab, t_fill *new, size_t n)
 	n = ft_count(n * 4);
 	while (new && tab[i])
 	{
+		while (tab[i] != '.')
+			i++;
 		if (ft_check(tab, new, i, n) == 1)
 		{
-			while (tab[i] != '.')
-				i++;
 			ft_fill(tab, new, i, n);
 			ft_putstr(tab);
 			ft_putchar('\n');
 			new = new->next;
+			i = 0;
 		}
 		else
-		   i++;	
+		   i++;
 	}
 }
