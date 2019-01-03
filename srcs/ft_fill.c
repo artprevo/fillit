@@ -6,15 +6,11 @@
 /*   By: artprevo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/09 20:03:13 by artprevo          #+#    #+#             */
-/*   Updated: 2019/01/03 16:10:40 by artprevo         ###   ########.fr       */
+/*   Updated: 2019/01/03 19:55:12 by artprevo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
-
-/*
-   /!\ TETRA D QUI EST DECALE D'UNE CASE ALLO /!\
-   */
 
 /*
    Compte le nombre de caractere sur 1 ligne (appelee 4 fois par ft_fill)
@@ -43,7 +39,7 @@ static int	ft_countx(char *buf, size_t y)
    (FONCTIONNEL ASKIP)
    */
 
-static int	ft_countz(char *buf, size_t y)
+int	ft_countz(char *buf, size_t y)
 {
 	size_t	i;
 	size_t	z;
@@ -63,7 +59,7 @@ static int	ft_countz(char *buf, size_t y)
    (FONCTIONNEL ASKIP)
    */
 
-static int	ft_check(char *tab, t_fill *new, size_t j, size_t n)
+int	ft_check(char *tab, t_fill *new, size_t j, size_t n)
 {
 	int		y;
 	int		x;
@@ -74,7 +70,6 @@ static int	ft_check(char *tab, t_fill *new, size_t j, size_t n)
 	z = 0;
 	y = 0;
 	buf = new->content;
-	j = j - ft_countz(buf, 0);
 	while (y != 4)
 	{
 		i = y + (n * y) + j;
@@ -84,6 +79,8 @@ static int	ft_check(char *tab, t_fill *new, size_t j, size_t n)
 		{
 			while (z != 0)
 			{
+				if (tab[i] != '.')
+					return (0);
 				i++;
 				z--;
 			}
@@ -100,9 +97,9 @@ static int	ft_check(char *tab, t_fill *new, size_t j, size_t n)
 /*
    Remplit le tableau avec le tetra a partir d'un point donne j
    (FONCTIONNEL ASKIP)
-   */
+*/
 
-static void	ft_fill(char *tab, t_fill *new, size_t j, size_t n)
+void	ft_fill(char *tab, t_fill *new, size_t j, size_t n)
 {
 	char	*buf;
 	size_t	i;
@@ -112,10 +109,8 @@ static void	ft_fill(char *tab, t_fill *new, size_t j, size_t n)
 	int		z;
 
 	y = 0;
-	i = 0;
 	z = 0;
 	buf = new->content;
-	j = j - ft_countz(buf, 0);
 	index = new->index;
 	while (y != 4)
 	{
@@ -128,8 +123,7 @@ static void	ft_fill(char *tab, t_fill *new, size_t j, size_t n)
 				i++;
 			while (z != 0)
 			{
-				if (y != 0)	
-					i++;
+				i++;
 				z--;
 			}
 			tab[i] = index;
@@ -151,23 +145,17 @@ int		ft_place(char *tab, t_fill *new, size_t n)
 	i = 0;
 	while (new && tab[i])
 	{
-		while (tab[i] != '.')
+		while (tab[i] != '.' && tab[i])
 			i++;
 		if (ft_check(tab, new, i, n) == 1)
 		{
 			ft_fill(tab, new, i, n);
-			ft_putstr(tab);
-			ft_putchar('\n');
 			new = new->next;
 			i = 0;
 		}
 		else
-		{
 			i++;
-			//new = new->prev;
-			//i = 1 + ft_deletetetra(new->index, tab);
-		}
-		if (i == (n * (n + 1)) - 1)
+		if (i >= (n * (n + 1)) - 1)
 			return (0);
 	}
 	return (1);

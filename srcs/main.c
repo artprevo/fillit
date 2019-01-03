@@ -6,7 +6,7 @@
 /*   By: tamigore <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/05 16:31:06 by tamigore          #+#    #+#             */
-/*   Updated: 2019/01/03 16:10:36 by artprevo         ###   ########.fr       */
+/*   Updated: 2019/01/03 19:55:13 by artprevo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ int			main(int ac, char **av)
 	p = ft_init(i);
 	while ((ft_place(p, list, i)) == 0)
 	{
+		ft_putstr("AUGMENTE LA TAILLE DU CARRE\n");
 		i++;
 		free(p);
 		p = ft_init(i);
