@@ -6,7 +6,7 @@
 /*   By: artprevo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/09 17:33:02 by artprevo          #+#    #+#             */
-/*   Updated: 2018/12/29 16:51:26 by artprevo         ###   ########.fr       */
+/*   Updated: 2019/01/02 19:15:26 by artprevo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 t_fill		*ft_listnew(char index, char *content)
 {
 	t_fill	*new;
-	t_fill	*tmp;
 
 	if (!(new = malloc(sizeof(*new))))
 		return (NULL);

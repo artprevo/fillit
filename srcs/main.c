@@ -6,7 +6,7 @@
 /*   By: tamigore <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/05 16:31:06 by tamigore          #+#    #+#             */
-/*   Updated: 2019/01/02 18:45:44 by artprevo         ###   ########.fr       */
+/*   Updated: 2019/01/03 16:10:36 by artprevo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
 int			main(int ac, char **av)
 {
 	t_fill	*list;
-	char	c;
 	char	*p;
 	int 	fd;
 	size_t	i;
@@ -26,10 +25,16 @@ int			main(int ac, char **av)
 		ft_putstr("usage : ./fillit valid_file\n");
 		return (0);
 	}
-	list = ft_valid_file(fd);
-	i = ft_listlen(list);
-	p = ft_init(ft_count(i * 4));
-	ft_place(p, list, i);
+	if (!(list = ft_valid_file(fd)))
+		return (0);
+	i = ft_count(ft_listlen(list) * 4);
+	p = ft_init(i);
+	while ((ft_place(p, list, i)) == 0)
+	{
+		i++;
+		free(p);
+		p = ft_init(i);
+	}
 	printf("tab = \n%s\n", p);
 	return (0);
 }

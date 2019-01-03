@@ -6,7 +6,7 @@
 /*   By: artprevo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/06 18:09:35 by artprevo          #+#    #+#             */
-/*   Updated: 2019/01/02 17:28:11 by artprevo         ###   ########.fr       */
+/*   Updated: 2019/01/03 16:02:55 by artprevo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,8 @@ size_t		ft_listlen(t_fill *list);
 void		ft_listiter(t_fill **begin, char *(*f)(char *s));
 char		*ft_init(size_t n);
 size_t		ft_count(size_t n);
-void		ft_place(char *tab, t_fill *new, size_t n);
+int			ft_place(char *tab, t_fill *new, size_t n);
 char		*ft_cutstr(char *p, int i);
+size_t		ft_deletetetra(char c, char *tab);
 
 #endif
