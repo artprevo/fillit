@@ -6,7 +6,7 @@
 /*   By: artprevo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/09 20:03:13 by artprevo          #+#    #+#             */
-/*   Updated: 2019/01/03 19:55:12 by artprevo         ###   ########.fr       */
+/*   Updated: 2019/01/03 21:17:32 by artprevo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ int	ft_check(char *tab, t_fill *new, size_t j, size_t n)
 		{
 			while (z != 0)
 			{
-				if (tab[i] != '.')
+				if (tab[i] == '\n')
 					return (0);
 				i++;
 				z--;
@@ -97,7 +97,7 @@ int	ft_check(char *tab, t_fill *new, size_t j, size_t n)
 /*
    Remplit le tableau avec le tetra a partir d'un point donne j
    (FONCTIONNEL ASKIP)
-*/
+   */
 
 void	ft_fill(char *tab, t_fill *new, size_t j, size_t n)
 {
@@ -119,8 +119,6 @@ void	ft_fill(char *tab, t_fill *new, size_t j, size_t n)
 		z = ft_countz(buf, y);
 		while (x != 0)
 		{
-			while (tab[i] != '.')
-				i++;
 			while (z != 0)
 			{
 				i++;
@@ -134,15 +132,51 @@ void	ft_fill(char *tab, t_fill *new, size_t j, size_t n)
 	}
 }
 
+/*
+ * permet de coller les pieces cheloues en forme de z, me dmande pas ske jfabrik*/
+
+static void	ft_checkopti(char *tab, t_fill *new, size_t j, size_t n)
+{
+	size_t	i;
+
+	i = j + 1;
+	if (tab[i] == new->index)
+	{
+		if (tab[i + 1] == new->index)
+		{
+			if (tab[i - 1] == '.')
+			{
+				i = i + n + 1;
+				if (tab[i] == new->index)
+				{
+					if (tab[i - 1] == new->index)
+					{
+						if (tab[i - 2] == '.')
+						{
+							tab[i] = '.';
+							tab[i - 2] = new->index;
+							tab[i - n] = '.';
+							tab[i - n - 2] = new->index;
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+
 /* 
    Fonction qui articule le tout, et premiere tentative de backtracking
    (BACKTRACK A BOSSER)
    */
 int		ft_place(char *tab, t_fill *new, size_t n)
 {
-	size_t i;
+	size_t	i;
+	size_t	k;
 
 	i = 0;
+	k = 0;
 	while (new && tab[i])
 	{
 		while (tab[i] != '.' && tab[i])
@@ -150,13 +184,24 @@ int		ft_place(char *tab, t_fill *new, size_t n)
 		if (ft_check(tab, new, i, n) == 1)
 		{
 			ft_fill(tab, new, i, n);
+			ft_checkopti(tab, new, i, n);
+			printf("%s\n", tab);
 			new = new->next;
 			i = 0;
 		}
 		else
 			i++;
 		if (i >= (n * (n + 1)) - 1)
-			return (0);
+		{
+			if (new->prev && k <= n * n * n * n * n)
+			{	
+				new = new->prev;
+				i = 1 + ft_deletetetra(new->index, tab);
+				k++;
+			}
+			else
+				return (0);
+		}
 	}
 	return (1);
 }

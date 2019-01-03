@@ -6,7 +6,7 @@
 /*   By: artprevo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/03 16:31:23 by artprevo          #+#    #+#             */
-/*   Updated: 2019/01/03 19:55:14 by artprevo         ###   ########.fr       */
+/*   Updated: 2019/01/03 21:15:01 by artprevo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,21 +60,10 @@ int	ft_checkiterative(char *tab, t_fill *list, size_t i, size_t n)
 {
 	while (tab[i])
 	{
-		if (tab[i] == '.')
-		{
-			if (list->x)
-			{	
-				if ((ft_check(tab, list, i, n) == 1) && list->x != i)
-					return (i);
-				i++;
-			}
-			else
-			{
-				if (ft_check(tab, list, i, n) == 1)
-					return (i);
-				i++;
-			}
-		}
+		while (tab[i] != '.')
+			i++;
+		if (ft_check(tab, list, i, n) == 1)
+			return (i);
 		else
 			i++;
 	}
