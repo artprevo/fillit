@@ -6,7 +6,7 @@
 /*   By: artprevo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/09 20:03:13 by artprevo          #+#    #+#             */
-/*   Updated: 2019/01/03 22:40:13 by artprevo         ###   ########.fr       */
+/*   Updated: 2019/01/04 16:13:32 by artprevo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,9 +72,14 @@ int	ft_check(char *tab, t_fill *new, size_t j, size_t n)
 	buf = new->content;
 	while (y != 4)
 	{
+		if (ft_countz(buf, 0) > 0 && y == 1)
+			j = j - ft_countz(buf, 0);
 		i = y + (n * y) + j;
 		x = ft_countx(buf, y);
-		z = ft_countz(buf, y);
+		if (y > 0)
+			z = ft_countz(buf, y);
+		else
+			z = 0;
 		while (x != 0)
 		{
 			while (z != 0)
@@ -114,9 +119,14 @@ void	ft_fill(char *tab, t_fill *new, size_t j, size_t n)
 	index = new->index;
 	while (y != 4)
 	{
+		if (ft_countz(buf, 0) > 0 && y == 1)
+			j = j - ft_countz(buf, 0);
 		i = y + (n * y) + j;
 		x = ft_countx(buf, y);
-		z = ft_countz(buf, y);
+		if (y > 0)
+			z = ft_countz(buf, y);
+		else
+			z = 0;
 		while (x != 0)
 		{
 			while (z != 0)
@@ -139,10 +149,8 @@ void	ft_fill(char *tab, t_fill *new, size_t j, size_t n)
 int		ft_place(char *tab, t_fill *new, size_t n)
 {
 	size_t	i;
-	size_t	k;
 
 	i = 0;
-	k = 0;
 	while (new && tab[i])
 	{
 		while (tab[i] != '.' && tab[i])
@@ -150,7 +158,6 @@ int		ft_place(char *tab, t_fill *new, size_t n)
 		if (ft_check(tab, new, i, n) == 1)
 		{
 			ft_fill(tab, new, i, n);
-			ft_checkoptiz(tab, new, i, n);
 			new = new->next;
 			i = 0;
 		}
@@ -158,11 +165,10 @@ int		ft_place(char *tab, t_fill *new, size_t n)
 			i++;
 		if (i >= (n * (n + 1)) - 1)
 		{
-			if (new->prev && k <= n * n * n * n * n)
+			if (new->prev)
 			{	
 				new = new->prev;
 				i = 1 + ft_deletetetra(new->index, tab);
-				k++;
 			}
 			else
 				return (0);

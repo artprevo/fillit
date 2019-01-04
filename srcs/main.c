@@ -6,7 +6,7 @@
 /*   By: tamigore <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/05 16:31:06 by tamigore          #+#    #+#             */
-/*   Updated: 2019/01/03 22:43:22 by artprevo         ###   ########.fr       */
+/*   Updated: 2019/01/04 16:14:05 by artprevo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,13 +34,6 @@ int			main(int ac, char **av)
 		i++;
 		free(p);
 		p = ft_init(i);
-	}
-	while (list->prev)
-		list = list->prev;
-	while (list)
-	{
-		ft_checkoptileft(p, list, i);
-		list = list->next;
 	}
 	ft_putstr(p);
 	return (0);
