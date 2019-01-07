@@ -6,14 +6,14 @@
 /*   By: artprevo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/06 20:32:31 by artprevo          #+#    #+#             */
-/*   Updated: 2019/01/03 21:41:24 by artprevo         ###   ########.fr       */
+/*   Updated: 2019/01/04 18:24:15 by tamigore         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
 /*
-compte les colonnes constituees uniquement de point
+**compte les colonnes constituees uniquement de point
 */
 
 static int		ft_count_column(char *buf)
@@ -36,7 +36,7 @@ static int		ft_count_column(char *buf)
 }
 
 /*
-compte les lignes constituees uniquement de point
+**compte les lignes constituees uniquement de point
 */
 
 static int		ft_count_line(char *buf)
@@ -55,9 +55,8 @@ static int		ft_count_line(char *buf)
 	return (j);
 }
 
-
 /*
-place le tetra en haut a gauche
+**place le tetra en haut a gauche
 */
 
 char			*ft_swap(char *buf, char index)

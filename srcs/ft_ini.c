@@ -6,15 +6,16 @@
 /*   By: artprevo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/09 20:03:13 by artprevo          #+#    #+#             */
-/*   Updated: 2019/01/04 15:33:32 by artprevo         ###   ########.fr       */
+/*   Updated: 2019/01/04 18:22:38 by tamigore         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
 /*
-calcule le nb de cote du plus petit carre possible (FONCTIONNEL)
+**calcule le nb de cote du plus petit carre possible (FONCTIONNEL)
 */
+
 size_t	ft_count(size_t n)
 {
 	size_t	i;
@@ -32,7 +33,7 @@ size_t	ft_count(size_t n)
 }
 
 /*
-genere le plus petit tableau possible (A BOSSER POUR INCORPORER LE BACKTRACK)
+**genere le plus petit tableau possible (A BOSSER POUR INCORPORER LE BACKTRACK)
 */
 
 char	*ft_init(size_t n)

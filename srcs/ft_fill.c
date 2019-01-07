@@ -6,18 +6,18 @@
 /*   By: artprevo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/09 20:03:13 by artprevo          #+#    #+#             */
-/*   Updated: 2019/01/04 16:13:32 by artprevo         ###   ########.fr       */
+/*   Updated: 2019/01/07 18:04:01 by artprevo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
 /*
-   Compte le nombre de caractere sur 1 ligne (appelee 4 fois par ft_fill)
-   (FONCTIONNEL)
-   */
+**Compte le nombre de caractere sur 1 ligne (appelee 4 fois par ft_fill)
+**(FONCTIONNEL)
+*/
 
-static int	ft_countx(char *buf, size_t y)
+int			ft_countx(char *buf, size_t y)
 {
 	size_t	i;
 	size_t	x;
@@ -35,11 +35,11 @@ static int	ft_countx(char *buf, size_t y)
 }
 
 /*
-   Compte le nombre de point avant le tetra, permet de gerer les tetra de batard
-   (FONCTIONNEL ASKIP)
-   */
+**Compte le nombre de point avant le tetra, permet de gerer les tetra de batard
+**(FONCTIONNEL ASKIP)
+*/
 
-int	ft_countz(char *buf, size_t y)
+int			ft_countz(char *buf, size_t y)
 {
 	size_t	i;
 	size_t	z;
@@ -55,19 +55,17 @@ int	ft_countz(char *buf, size_t y)
 }
 
 /*
-   Check qu'on peut mettre le tetra a partir d'un point donne j du tableau
-   (FONCTIONNEL ASKIP)
-   */
+**Check qu'on peut mettre le tetra a partir d'un point donne j du tableau
+**(FONCTIONNEL ASKIP)
+*/
 
-int	ft_check(char *tab, t_fill *new, size_t j, size_t n)
+int			ft_check(char *tab, t_fill *new, size_t j, size_t n)
 {
-	int		y;
-	int		x;
+	size_t	y;
+	int		k;
 	int		i;
 	char	*buf;
-	int		z;
 
-	z = 0;
 	y = 0;
 	buf = new->content;
 	while (y != 4)
@@ -75,82 +73,47 @@ int	ft_check(char *tab, t_fill *new, size_t j, size_t n)
 		if (ft_countz(buf, 0) > 0 && y == 1)
 			j = j - ft_countz(buf, 0);
 		i = y + (n * y) + j;
-		x = ft_countx(buf, y);
-		if (y > 0)
-			z = ft_countz(buf, y);
-		else
-			z = 0;
-		while (x != 0)
-		{
-			while (z != 0)
-			{
-				if (tab[i] == '\n')
-					return (0);
-				i++;
-				z--;
-			}
-			if (tab[i] != '.')
-				return (0);
-			i++;
-			x--;
-		}
+		k = ft_checkplace(tab, buf, y, i);
+		if (k == 0)
+			return (0);
+		i = k;
 		y++;
 	}
 	return (1);
 }
 
 /*
-   Remplit le tableau avec le tetra a partir d'un point donne j
-   (FONCTIONNEL ASKIP)
-   */
+**Remplit le tableau avec le tetra a partir d'un point donne j
+**(FONCTIONNEL ASKIP)
+*/
 
-void	ft_fill(char *tab, t_fill *new, size_t j, size_t n)
+void		ft_fill(char *tab, t_fill *new, size_t j, size_t n)
 {
-	char	*buf;
 	size_t	i;
-	int		x;
-	size_t	y;
-	char	index;
-	int		z;
+	size_t	k;
+	int		y;
+	char	*buf;
 
-	y = 0;
-	z = 0;
 	buf = new->content;
-	index = new->index;
+	y = 0;
 	while (y != 4)
 	{
 		if (ft_countz(buf, 0) > 0 && y == 1)
 			j = j - ft_countz(buf, 0);
 		i = y + (n * y) + j;
-		x = ft_countx(buf, y);
-		if (y > 0)
-			z = ft_countz(buf, y);
-		else
-			z = 0;
-		while (x != 0)
-		{
-			while (z != 0)
-			{
-				i++;
-				z--;
-			}
-			tab[i] = index;
-			i++;
-			x--;
-		}
+		k = ft_fillplace(tab, new, y, i);
+		i = k;
 		y++;
 	}
 }
 
-/* 
-   Fonction qui articule le tout, et premiere tentative de backtracking
-   (BACKTRACK A BOSSER)
-   */
-int		ft_place(char *tab, t_fill *new, size_t n)
-{
-	size_t	i;
+/*
+**Fonction qui articule le tout, et premiere tentative de backtracking
+**(BACKTRACK A BOSSER)
+*/
 
-	i = 0;
+int			ft_place(char *tab, t_fill *new, size_t n, size_t i)
+{
 	while (new && tab[i])
 	{
 		while (tab[i] != '.' && tab[i])
@@ -166,7 +129,7 @@ int		ft_place(char *tab, t_fill *new, size_t n)
 		if (i >= (n * (n + 1)) - 1)
 		{
 			if (new->prev)
-			{	
+			{
 				new = new->prev;
 				i = 1 + ft_deletetetra(new->index, tab);
 			}

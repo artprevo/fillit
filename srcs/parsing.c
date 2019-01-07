@@ -6,11 +6,12 @@
 /*   By: tamigore <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/09 16:18:44 by tamigore          #+#    #+#             */
-/*   Updated: 2019/01/02 19:10:26 by artprevo         ###   ########.fr       */
+/*   Updated: 2019/01/07 12:47:44 by tamigore         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
+#include <stdio.h>
 
 static int	ft_find_t1(char *p, int i)
 {
@@ -106,7 +107,8 @@ static int	ft_valid_block(char *p, int line, int count)
 			count = 0;
 			line = 0;
 		}
-		else if (line == 5 && p[i - 1] != '\n')
+		else if ((line == 5 && p[i - 1] != '\n') || \
+				(p[i] == '\n' && p[i - 1] == '\n'))
 			return (0);
 		if (p[i] == '#')
 			count++;
@@ -122,6 +124,7 @@ t_fill		*ft_valid_file(int fd)
 	char	buf[22];
 	char	c;
 	int		r;
+	size_t	len;
 	t_fill	*list;
 
 	if (fd < 0 || read(fd, buf, 0) == -1)
@@ -130,10 +133,13 @@ t_fill		*ft_valid_file(int fd)
 	while ((r = read(fd, buf, 21)) > 0)
 	{
 		buf[r] = '\0';
+		len = ft_strlen(buf);
 		if (!(ft_valid_tetra(buf, 0)) || !(ft_valid_block(buf, 0, 0)))
 			return (NULL);
 		ft_listadd(&list, ft_listnew(c, buf), c);
 		c++;
 	}
-	return (list);
+	if (len == 20)
+		return (list);
+	return (NULL);
 }

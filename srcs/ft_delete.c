@@ -6,14 +6,14 @@
 /*   By: artprevo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/03 15:51:10 by artprevo          #+#    #+#             */
-/*   Updated: 2019/01/03 20:08:51 by artprevo         ###   ########.fr       */
+/*   Updated: 2019/01/07 15:06:07 by tamigore         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
 /*
-Supprime le tetra et renvoie la position de placement
+**Supprime le tetra et renvoie la position de placement
 */
 
 size_t	ft_deletetetra(char c, char *tab)
@@ -32,4 +32,26 @@ size_t	ft_deletetetra(char c, char *tab)
 		i++;
 	}
 	return (j);
+}
+
+/*
+**Free tout la liste
+*/
+
+void	ft_freelst(t_fill **list)
+{
+	t_fill	*p;
+
+	while (*list)
+	{
+		p = (*list)->next;
+		free((*list)->content);
+		(*list)->index = '\0';
+		(*list)->x = 0;
+		(*list)->next = NULL;
+		(*list)->prev = NULL;
+		free(*list);
+		*list = p;
+	}
+	free(p);
 }

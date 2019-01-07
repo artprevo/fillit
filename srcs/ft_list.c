@@ -6,7 +6,7 @@
 /*   By: artprevo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/09 17:33:02 by artprevo          #+#    #+#             */
-/*   Updated: 2019/01/03 22:45:07 by artprevo         ###   ########.fr       */
+/*   Updated: 2019/01/04 18:20:53 by tamigore         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ t_fill		*ft_listnew(char index, char *content)
 	new->index = index;
 	new->next = NULL;
 	new->prev = NULL;
-//	printf("content = \n%s\nindex = %c\n", new->content, new->index);
 	return (new);
 }
 
@@ -71,7 +70,7 @@ size_t		ft_listlen(t_fill *list)
 	size_t	i;
 
 	i = 1;
-	while(list->next)
+	while (list->next)
 	{
 		list = list->next;
 		i++;
