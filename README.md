@@ -1,6 +1,10 @@
 # fillit
 Can you feel it ? Tangram project !
 
+usage : 
+
+./fillit examples/...
+
 This project is based around optimization of space.
 The VM gives us a grid and pieces, and the goal is to organize pieces in the grid so we can take the minimum space.
 
