@@ -22,8 +22,9 @@ char	*ft_strnew(size_t size)
 		return (0);
 	while (i <= size)
 	{
-		str[i] = '\0';
+		str[i] = '.';
 		i++;
 	}
+	str[--i] = '\0';
 	return (str);
 }
