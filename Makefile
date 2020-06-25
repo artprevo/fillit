@@ -73,8 +73,6 @@ SRC/S = ft_strlen.c        \
 	ft_strjoin.c		\
 	ft_strtrim.c		\
 	ft_strsplit.c		\
-	ft_strdup_free.c		\
-	ft_strnjoin_free.c		\
 	ft_sqrt.c
 
 NAME = fillit
@@ -88,13 +86,17 @@ LIBOBJ = $(LIBSRC:.c=.o)
 all : $(NAME)
 
 $(NAME): $(LIB)
-	gcc $(FLAGS) $(addprefix srcs/, $(SRC)) -o $(NAME) -I $(HEADERS) -L. -lft
+	printf "\033[0;36m> Compiling fillit\033m"
+	clang $(FLAGS) $(addprefix srcs/, $(SRC)) -o $(NAME) -I $(HEADERS) -L. -lft
+	printf "\033[0;32m OK\n\033[0m"
 
-$(LIB):
-	gcc $(FLAGS) -c $(addprefix libft/, $(LIBSRC)) -I $(HEADERS)
+$(LIB): FORCE
+	clang $(FLAGS) -c $(addprefix libft/, $(LIBSRC)) -I $(HEADERS)
 	@test -d objs || mkdir objs
 	@mv $(LIBOBJ) objs/
 	ar rc $(LIB) $(addprefix objs/, $(LIBOBJ))
+
+FORCE:
 
 clean:
 	rm -rdf objs/
@@ -106,3 +108,6 @@ fclean: lclean clean
 	rm -f $(NAME)
 
 re: fclean all
+
+.PHONY : clean fclean re all
+.SILENT:
